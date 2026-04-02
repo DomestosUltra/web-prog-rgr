@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра на внимание и скорость реакции</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="page">
+        <section class="hero panel">
+            <p class="eyebrow">Расчетно-графическое задание</p>
+            <h1>Игра на внимание и скорость реакции</h1>
+            <p class="hero__text">
+                Нажимайте числа строго по возрастанию: от 1 до последней ячейки таблицы.
+                Время ограничено и зависит от размера поля.
+            </p>
+        </section>
+
+        <section class="workspace">
+            <aside class="panel sidebar">
+                <div class="control-group">
+                    <label for="board-size" class="field-label">Размер таблицы</label>
+                    <select id="board-size" class="field-control">
+                        <option value="3">3 x 3</option>
+                        <option value="4" selected>4 x 4</option>
+                        <option value="5">5 x 5</option>
+                        <option value="6">6 x 6</option>
+                    </select>
+                    <p class="field-hint">Ограничение времени: 2 секунды на каждую ячейку.</p>
+                </div>
+
+                <div class="button-row">
+                    <button id="start-button" class="action-button action-button--primary" type="button">Старт</button>
+                    <button id="restart-button" class="action-button action-button--ghost" type="button" disabled>Заново</button>
+                </div>
+
+                <section class="metrics-grid" aria-label="Показатели игры">
+                    <article class="metric-card">
+                        <span class="metric-card__label">Следующее число</span>
+                        <strong id="target-number" class="metric-card__value">-</strong>
+                    </article>
+                    <article class="metric-card">
+                        <span class="metric-card__label">Найдено</span>
+                        <strong id="completed-count" class="metric-card__value">0</strong>
+                    </article>
+                    <article class="metric-card">
+                        <span class="metric-card__label">Ошибки</span>
+                        <strong id="mistake-count" class="metric-card__value">0</strong>
+                    </article>
+                    <article class="metric-card metric-card--accent">
+                        <span class="metric-card__label">Осталось времени</span>
+                        <strong id="time-remaining" class="metric-card__value">0 сек</strong>
+                    </article>
+                </section>
+
+                <section class="rules-card">
+                    <h2>Правила</h2>
+                    <ol>
+                        <li>Нажмите <strong>Старт</strong>.</li>
+                        <li>Ищите числа по порядку, начиная с 1.</li>
+                        <li>Правильный выбор меняет фон ячейки.</li>
+                        <li>Нужно успеть до конца таймера.</li>
+                    </ol>
+                </section>
+            </aside>
+
+            <section class="panel board-panel">
+                <div id="game-board" class="game-board is-empty" aria-live="polite"></div>
+                <p id="status-message" class="status-message status--info">
+                    Выберите размер таблицы и начните новую игру.
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <noscript>
+        Для работы игры необходимо включить JavaScript.
+    </noscript>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/domain/game-session.js"></script>
+    <script src="js/domain/board-generator.js"></script>
+    <script src="js/domain/style-generator.js"></script>
+    <script src="js/domain/game-rules.js"></script>
+    <script src="js/ui/game-view.js"></script>
+    <script src="js/app/game-controller.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
