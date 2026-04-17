@@ -17,7 +17,7 @@
                 self.startGame();
             },
             onRestart: function () {
-                self.startGame();
+                self.resetGame();
             },
             onCellClick: function (selectedNumber) {
                 self.handleCellClick(selectedNumber);
@@ -45,6 +45,13 @@
 
         this.syncTime();
         this.timerId = global.setInterval(this.onTimerTick.bind(this), 200);
+    };
+
+    GameController.prototype.resetGame = function () {
+        this.stopTimer();
+        this.session = null;
+        this.lastRenderedSecond = null;
+        this.view.renderInitialState();
     };
 
     GameController.prototype.handleCellClick = function (selectedNumber) {
